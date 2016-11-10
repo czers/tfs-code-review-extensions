@@ -1,0 +1,39 @@
+{
+	"name": "Example Extension",
+	"description": "Better, faster, stronger... boilerplate",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"browser_action": {
+		"default_icon": "images/icon-32.png",
+		"default_title": "Example Extension",
+		"default_popup": "popup/popup.html"
+	},
+	"icons": {
+		"32": "images/icon-32.png",
+		"48": "images/icon-48.png"
+	},
+	"permissions": [
+		"http://*/*",
+		"https://*/*",
+		"storage",
+		"webRequest",
+		"activeTab",
+		"<all_urls>"
+	],
+	"options_page": "options/options.html",
+	"content_scripts": [
+		{
+			"css": [
+				"content/styles.css"
+			],
+			"js": [
+				"content/libs.js",
+				"content/scripts.js"
+			],
+			"matches": [
+				"http://localhost:8080/*"
+			],
+			"run_at": "document_end"
+		}
+	]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "chrome-extension-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.97.8",
+    "mdi": "^1.7.22"
+  },
+  "devDependencies": {
+    "7zip": "0.0.6",
+    "coffee-script": "^1.11.1",
+    "crx": "^3.2.1",
+    "del": "^2.2.2",
+    "gulp": "gulpjs/gulp.git#4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-pug": "^3.1.0",
+    "precss": "^1.4.0"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
+  "keywords": [],
+  "author": "J-Sek",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/J-Sek/chrome-extension-boilerplate.git"
+  },
+  "license": "MIT"
+}

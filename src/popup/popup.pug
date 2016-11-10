@@ -1,0 +1,22 @@
+doctype html
+head
+    link(rel='stylesheet', href='libs.css')
+    link(rel='stylesheet', href='styles.css')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,500', rel='stylesheet', type='text/css')
+body
+    img.bg(src='../images/popup-300.jpg')
+    a.beta(href='https://github.com/J-Sek/chrome-extension-boilerplate', target='_blank') Beta
+    #divider_line
+    .popup
+        .stats
+            .stats-line
+                span.stats-label Some statistics
+                span.stats-value 123
+            .stats-line
+                span.stats-label Some more statistics
+                span.stats-value ...
+
+        button.open-options.waves-effect.waves-light.btn.btn-flat(title='Go to Options') Options
+
+    script(src='libs.js')
+    script(src='scripts.js')
