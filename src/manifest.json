@@ -1,11 +1,11 @@
 {
-	"name": "Example Extension",
-	"description": "Better, faster, stronger... boilerplate",
-	"version": "0.0.1",
+	"name": "TFS Code Review Extensions",
+	"description": "Improve your productivity with the set of extensions for the TFS Pull Requests interface.",
+	"version": "0.0.2",
 	"manifest_version": 2,
 	"browser_action": {
 		"default_icon": "images/icon-32.png",
-		"default_title": "Example Extension",
+		"default_title": "TFS Code Review Extensions",
 		"default_popup": "popup/popup.html"
 	},
 	"icons": {
@@ -31,9 +31,13 @@
 				"content/scripts.js"
 			],
 			"matches": [
-				"http://localhost:8080/*"
+				"http://*/tfs/*/pullrequest/*",
+				"http://*/tfs/*/commit/*"
 			],
 			"run_at": "document_end"
 		}
+	],
+	"web_accessible_resources": [
+		"content/icon_dropdown.html"
 	]
 }

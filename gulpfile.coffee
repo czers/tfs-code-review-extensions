@@ -12,7 +12,7 @@ parallel = (x) -> gulp.parallel.apply gulp, x
 generate 'content', [
     'node_modules/jquery/dist/jquery.min.js'
 ], [
-    'content_demo.js'
+    'content.js'
 ]
 
 generate 'options', [
@@ -141,6 +141,6 @@ gulp.task 'default', series [
 
 gulp.task 'watch', ->
     gulp.watch 'src/**/*.pug',      parallel ['build:html']
-    gulp.watch 'src/**/*.coffee',   parallel ['build:scripts']
+    gulp.watch 'src/**/*.js',       parallel ['build:scripts']
     gulp.watch 'src/**/*.scss',     parallel ['build:styles']
     gulp.watch 'src/manifest.json', parallel ['copy:manifest']

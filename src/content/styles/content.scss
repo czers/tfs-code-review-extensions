@@ -1,1 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+
+#tfs-cr-ext-icon-dropdown {
+    position: relative;
+    background: white;
+    border: 1px solid #cccccc;
+    max-width: 180px;
+    padding: 0;
+    margin: 0;
+    display: none;
+    li {
+        margin: 1px;
+        border: 1px solid transparent;
+        padding: 4px;
+        list-style-type: none;
+        cursor: pointer;
+        .icon {
+            margin-right: 5px;
+        }
+    }
+    li:hover {
+        border: 1px solid #c5d6f1;
+        background-color: #dce6f4
+    }
+}
+
+.tfs-cr-ext-icon {
+    margin-left: 5px;
+    cursor: pointer;
+}
