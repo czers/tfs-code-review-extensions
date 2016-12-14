@@ -1,6 +1,6 @@
-# Google Chrome Extension boilerplate
+# TFS Code Review Extensions
 
-Clone it and build extension like a Pro
+Improve your productivity with the set of extensions for the TFS Pull Requests interface.
 
 ---
 
