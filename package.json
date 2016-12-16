@@ -1,6 +1,6 @@
 {
-  "name": "chrome-extension-boilerplate",
-  "version": "1.0.0",
+  "name": "tfs-code-review-extensions",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -26,10 +26,10 @@
     "watch": "gulp watch"
   },
   "keywords": [],
-  "author": "J-Sek",
+  "author": "czers",
   "repository": {
     "type": "git",
-    "url": "https://github.com/J-Sek/chrome-extension-boilerplate.git"
+    "url": "https://github.com/czers/tfs-code-review-extensions.git"
   },
   "license": "MIT"
 }
