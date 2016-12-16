@@ -32,3 +32,7 @@ npm run build
 
 - You can use `*.crx` file like a custom build. Just drag&drop on `chrome://extensions` page.
 - Zip archive is used to upload new version to Chrome Store.
+
+## Credits
+
+Icons made by [Freepik](http://www.freepik.com/) from [Flaticon](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
