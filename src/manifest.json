@@ -43,7 +43,9 @@
 			],
 			"matches": [
 				"http://*/tfs/*/pullrequest/*",
-				"http://*/tfs/*/commit/*"	
+				"http://*/tfs/*/commit/*",
+				"https://*.visualstudio.com/*/pullrequest/*",				
+				"https://*.visualstudio.com/*/commit/*"
 			],
 			"run_at": "document_end"
 		}
