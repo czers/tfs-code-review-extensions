@@ -4,6 +4,15 @@ Improve your productivity with the set of extensions for the TFS Pull Requests i
 
 ---
 
+![](screenshots/tfs-cloud-screenshot-2.png)
+
+---
+
+## Functionality
+
+- Ability to mark each file as `Approved`, `Waiting` or `Rejected`
+- Works for TFS Cloud and TFS on-premises
+
 ## Setup
 
 ```bash
@@ -18,10 +27,12 @@ npm run build
 
 ### Pack before publish
 
-1. Generate `key.pem` once using `ssh-keygen` command
+1. Generate `key.pem` once using `npm run keygen` command
+1. Execute `gulp pack` command
 
-Create `*.crx` and `*.zip` packages
+- You can use `*.crx` file like a custom build. Just drag&drop on `chrome://extensions` page.
+- Zip archive is used to upload new version to Chrome Store.
 
-```bash
-gulp pack
-```
+## Credits
+
+Icons made by [Freepik](http://www.freepik.com/) from [Flaticon](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)

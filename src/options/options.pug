@@ -1,5 +1,6 @@
 doctype html
 head
+    title TFS Code Review Extensions | Options
     link(rel='stylesheet', href='libs.css')
     link(rel='stylesheet', href='styles.css')
     link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet', type='text/css')
@@ -11,23 +12,20 @@ body
                     i.mdi.mdi-pencil
                     | Customization
                 .collapsible-body.active
-                    form.center-align(action="#")
-                        .row
-                            .input-field.col.s6
-                                input#kb_input(type='text')
-                                label(for='kb_input') Keyboard shortcut
-                            .input-field.col.s6
-                                select.icons
-                                    option(value='', selected='') Choose color
-                                    option.left.circle(value='', data-icon='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAOklEQVR42u3OMQ0AMAgAsKFmphGBQ1BBwtEqaOSvfoeFoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKDgjgFehmH5yBxgRQAAAABJRU5ErkJggg==') Color 1
-                                    option.left.circle(value='', data-icon='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAOklEQVR42u3OMQ0AMAgAsCFlpjGKAFBBwtEqaPysfoeFoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKDgjgEB02qRhi3AWQAAAABJRU5ErkJggg==') Color 2
-                                    option.left.circle(value='', data-icon='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAOklEQVR42u3OMQ0AMAgAsGFv1pCFMFBBwtEqaGT9foeFoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKDgjgHtmGfB6UUkvgAAAABJRU5ErkJggg==') Color 3
-                                label Select glow color
-                        .row
-                            .range-field.col.s12
-                                label Adjust top offset [100 ~ 600px]
-                                p
-                                    input#test5(type='range', min='100', max='600', step='50', value='300')
+                    .feedback-link.center-align(action="#")
+                        a(href='https://github.com/czers/tfs-code-review-extensions/issues')
+                        em.no-settings No settings yet...
+                        hr
+                        | What you wish to be configurable?
+                        br
+                        button.feature-request-button.save-options.waves-effect.waves-light.light-green.darken-1.btn Request a feature
+            li
+                .collapsible-header
+                    i.mdi.mdi-lightbulb-outline
+                    | Not exactly random joke
+                .collapsible-body
+                    .center-align(action="#")
+                        img.joke(src='http://www.cabird.com/wp/wp-content/uploads/2015/03/friendly-code-review.png')
             li
                 .collapsible-header
                     i.mdi.mdi-flask
@@ -40,17 +38,14 @@ body
                 .collapsible-body
                     form(action="#")
                         p
-                            input#test1(type='checkbox', disabled='disabled')
-                            label(for='test1') Experimental feature 1 (comming soon)
+                            input#tracking-progress(type='checkbox', disabled='disabled')
+                            label(for='tracking-progress') Tracking review progress (comming soon)
                         p
-                            input#test2(type='checkbox', disabled='disabled')
-                            label(for='test2') Experimental feature 2 (comming soon)
+                            input#files-visibility(type='checkbox', disabled='disabled')
+                            label(for='files-visibility') Files visibility (comming soon)
                         p
-                            input#test3(type='checkbox', disabled='disabled')
-                            label(for='test3') Experimental feature 3 (comming soon)
-
-        .center-align
-            button.save-options.waves-effect.waves-light.light-blue.darken-1.btn Save
+                            input#file-name-colors(type='checkbox', disabled='disabled')
+                            label(for='file-name-colors') File name colors (comming soon)
 
     script(src='libs.js')
     script(src='scripts.js')
