@@ -13,12 +13,12 @@ body
                     | Customization
                 .collapsible-body.active
                     .feedback-link.center-align(action="#")
-                        a(href='https://github.com/czers/tfs-code-review-extensions/issues')
                         em.no-settings No settings yet...
                         hr
                         | What you wish to be configurable?
                         br
-                        button.feature-request-button.save-options.waves-effect.waves-light.light-green.darken-1.btn Request a feature
+                        a(href='https://github.com/czers/tfs-code-review-extensions/issues')
+                            button.feature-request-button.save-options.waves-effect.waves-light.light-green.darken-1.btn Request a feature
             li
                 .collapsible-header
                     i.mdi.mdi-lightbulb-outline
@@ -39,13 +39,13 @@ body
                     form(action="#")
                         p
                             input#tracking-progress(type='checkbox', disabled='disabled')
-                            label(for='tracking-progress') Tracking review progress (comming soon)
+                            label(for='tracking-progress') Tracking review progress (coming soon)
                         p
                             input#files-visibility(type='checkbox', disabled='disabled')
-                            label(for='files-visibility') Files visibility (comming soon)
+                            label(for='files-visibility') Files visibility (coming soon)
                         p
                             input#file-name-colors(type='checkbox', disabled='disabled')
-                            label(for='file-name-colors') File name colors (comming soon)
+                            label(for='file-name-colors') File name colors (coming soon)
 
     script(src='libs.js')
     script(src='scripts.js')
