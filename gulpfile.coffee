@@ -12,7 +12,7 @@ parallel = (x) -> gulp.parallel.apply gulp, x
 generate 'content', [
     'node_modules/jquery/dist/jquery.min.js'
 ], [
-    'content.js'
+    'content.ts'
 ]
 
 generate 'options', [
@@ -21,7 +21,7 @@ generate 'options', [
     'node_modules/materialize-css/dist/css/materialize.min.css'
     'node_modules/mdi/css/materialdesignicons.min.css'
 ], [
-    'options.js'
+    'options.ts'
 ]
 
 generate 'popup', [
@@ -30,7 +30,7 @@ generate 'popup', [
     'node_modules/materialize-css/dist/css/materialize.min.css'
     'node_modules/mdi/css/materialdesignicons.min.css'
 ], [
-    'popup.js'
+    'popup.ts'
 ]
 
 # #####################################

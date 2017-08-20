@@ -9,6 +9,9 @@ $(window).on('load', () => {
 });
 
 class IconGenerator {
+    iconClasses: { approved: string; none: string; waiting: string; rejected: string; };
+    iconTemplate: string;
+
     constructor() {
         this.iconTemplate = '<span class="tfs-cr-ext-icon icon bowtie-icon bowtie-status-waiting"></span>';
         this.iconClasses = {
@@ -25,6 +28,11 @@ class IconGenerator {
 }
 
 class IconDropdown {
+    dropdownTemplate: any;
+    clickCallback: (any) => void;
+    loaded: Promise<void>;
+    dropdown: string;
+
     constructor() {
         this.dropdown = '#tfs-cr-ext-icon-dropdown';
         this.loaded = this.loadDropdownTemplate()
@@ -67,13 +75,21 @@ class IconDropdown {
     }
 }
 
-class FileList {
+class ItemList {
+    observerCallback: () => void;
+    loaded: Promise<void>;
+    itemListDetectionInterval: number;
+    anyListItem: string;
+    folderItem: string;
+    fileItem: string;
+    fileGridContainer: string;
+
     constructor() {
         this.fileGridContainer = '.files-grid-container';
         this.fileItem = '.file-item';
         this.folderItem = '.folder-item';
         this.anyListItem = [this.fileItem, this.folderItem].join(',');
-        this.fileListDetectionInterval = 250;
+        this.itemListDetectionInterval = 250;
         this.loaded = this.waitForFileListToBeReady()
             .then(() => this.setupObserve());
         this.observerCallback = () => {};
@@ -115,7 +131,7 @@ class FileList {
             (function detector() {
                 if ($(that.anyListItem).length == 0) {
                     // console.log('file list not ready yet');
-                    setTimeout(detector, that.fileListDetectionInterval);
+                    setTimeout(detector, that.itemListDetectionInterval);
                 } else {
                     // console.log('file list ready');
                     resolve();
@@ -127,11 +143,21 @@ class FileList {
 }
 
 class IconSwapper {
+    loaded: Promise<{}>;
+    iconState: {};
+    $lastClickedItem: any;
+    iconDropdown: IconDropdown;
+    iconGenerator: IconGenerator;
+    itemList: ItemList;
+    changeTitleContainer: string;
+    extIcon: string;
+    iconContainer: string;
+
     constructor() {
         this.iconContainer = '.grid-icon';
         this.extIcon = '.tfs-cr-ext-icon';
         this.changeTitleContainer = '.vc-change-title-link-container';
-        this.fileList = new FileList();
+        this.itemList = new ItemList();
         this.iconGenerator = new IconGenerator();
         this.iconDropdown = new IconDropdown();
         this.iconDropdown.click((iconType) => this.swapLastClickedIcon(iconType));
@@ -153,7 +179,7 @@ class IconSwapper {
     }
 
     loadIconState() {
-        let dependenciesLoaded = Promise.all([this.iconDropdown.loaded, this.fileList.loaded]);
+        let dependenciesLoaded = Promise.all([this.iconDropdown.loaded, this.itemList.loaded]);
         let promise = new Promise((resolve, reject) => {
             dependenciesLoaded.then(() => {
                 let titleOfChange = this.getChangeTitle();
@@ -173,7 +199,7 @@ class IconSwapper {
     swapIcon(iconType, $listItem) {
         $listItem.find(this.extIcon).removeClass(this.iconGenerator.allIconClasses);
         $listItem.find(this.extIcon).addClass(this.iconGenerator.iconClasses[iconType]);
-        let longItemPath = this.fileList.getLongItemPath($listItem);
+        let longItemPath = this.itemList.getLongItemPath($listItem);
         this.iconState[longItemPath] = iconType;
         this.saveIconState();
     }
@@ -197,20 +223,20 @@ class IconSwapper {
 
     addIcons() {        
         this.loaded.then(() => {
-            let $listItems = this.fileList.$items;
+            let $listItems = this.itemList.$items;
             // console.log(`Found ${$listItems.length} items to play with`);
             $listItems.each((index, listItem) => {
                 if ($(listItem).find(this.extIcon).length > 0) {
                     return;
                 }
                 this.addIcon($(listItem));
-                let longItemPath = this.fileList.getLongItemPath($(listItem));
+                let longItemPath = this.itemList.getLongItemPath($(listItem));
                 let savedItemIconState = this.iconState[longItemPath]; 
                 if (savedItemIconState !== undefined) {
                     this.swapIcon(savedItemIconState, $(listItem));
                 }
             });
         });
-        this.fileList.observe(() => this.addIcons());   
+        this.itemList.observe(() => this.addIcons());   
     }
 }

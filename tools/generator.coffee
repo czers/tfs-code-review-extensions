@@ -1,10 +1,12 @@
 gulp = require "gulp"
 $ = do require "gulp-load-plugins"
 parallel = (x) -> gulp.parallel.apply gulp, x
+ts = require "gulp-typescript"
 
 module.exports = (context, libs, scripts) ->
     gulp.task "build:#{context}:scripts", ->
         gulp.src scripts.map (x) -> "src/#{context}/scripts/#{x}"
+            .pipe (ts.createProject "tsconfig.json")()
             .pipe $.concat 'scripts.js'
             .pipe gulp.dest "dist/#{context}"
 
