@@ -10,5 +10,5 @@ $(() => {
     });
   };
 
-  createLink('.open-options', 'options/options.html');
+  createLink('.open-options', '/options/options.html');
 });  
