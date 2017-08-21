@@ -1,11 +1,14 @@
 $(() => {
-    // console.log('dom ready');
+    let log = new Logger();
+    log.info('dom ready');
 });
 
 $(window).on('load', () => {
-    // console.log('window load');
+    let log = new Logger();
+    log.info('window load');
+
     let iconSwapper = new IconSwapper();
-    iconSwapper.addIcons();
+        iconSwapper.addIcons();
 });
 
 class IconGenerator {
@@ -32,12 +35,14 @@ class IconDropdown {
     clickCallback: (any) => void;
     loaded: Promise<void>;
     dropdown: string;
+    log: Logger;
 
     constructor() {
         this.dropdown = '#tfs-cr-ext-icon-dropdown';
         this.loaded = this.loadDropdownTemplate()
             .then((template) => this.setupDropdown(template));
         this.clickCallback = () => {};       
+        this.log = new Logger();
     }
 
     setupDropdown(template) {
@@ -50,7 +55,7 @@ class IconDropdown {
                 ? $(evt.target)
                 : $(evt.target).parents('li');
             let value = $item.data('value');
-            // console.log(`clicked ${value} option`);
+            this.log.info(`clicked ${value} option`);
             this.clickCallback(value);
             this.$dropdown.hide();
         });
@@ -66,8 +71,8 @@ class IconDropdown {
 
     loadDropdownTemplate() {
         let promise = new Promise((resolve, reject) => {
-            $.get(chrome.extension.getURL('content/icon_dropdown.html'), function(data) {
-                // console.log('dropdown template loaded');
+            $.get(chrome.extension.getURL('content/icon_dropdown.html'), (data) => {
+                this.log.info('dropdown template loaded');
                 resolve(data);
             });
         });
@@ -83,6 +88,7 @@ class ItemList {
     folderItem: string;
     fileItem: string;
     fileGridContainer: string;
+    log: Logger;
 
     constructor() {
         this.fileGridContainer = '.files-grid-container';
@@ -93,6 +99,7 @@ class ItemList {
         this.loaded = this.waitForFileListToBeReady()
             .then(() => this.setupObserve());
         this.observerCallback = () => {};
+        this.log = new Logger();
     }
 
     get $list() {
@@ -115,7 +122,7 @@ class ItemList {
             subtree: true 
         };
         let observer = new MutationObserver(() => {
-            // console.log('list modified');
+            this.log.info('list modified');
             this.observerCallback();
         });
         observer.observe(this.$list[0], observerConfig);
@@ -130,10 +137,10 @@ class ItemList {
             let that = this;
             (function detector() {
                 if ($(that.anyListItem).length == 0) {
-                    // console.log('file list not ready yet');
+                    that.log.info('file list not ready yet');
                     setTimeout(detector, that.itemListDetectionInterval);
                 } else {
-                    // console.log('file list ready');
+                    that.log.info('file list ready');
                     resolve();
                 }
             }());
@@ -152,6 +159,7 @@ class IconSwapper {
     changeTitleContainer: string;
     extIcon: string;
     iconContainer: string;
+    log: Logger;
 
     constructor() {
         this.iconContainer = '.grid-icon';
@@ -164,6 +172,7 @@ class IconSwapper {
         this.$lastClickedItem = undefined;
         this.iconState = {};
         this.loaded = this.loadIconState();
+        this.log = new Logger();
     }
 
     getChangeTitle() {
@@ -174,8 +183,10 @@ class IconSwapper {
         let titleOfChange = this.getChangeTitle();
         let toSave = {};
         toSave[titleOfChange] = this.iconState;
-        // console.log('state to be saved', toSave);
-        chrome.storage.local.set(toSave, () => {/*console.log('state saved', toSave);*/});
+        this.log.info('state to be saved', toSave);
+        chrome.storage.local.set(toSave, () => {
+            this.log.info('state saved', toSave);
+        });
     }
 
     loadIconState() {
@@ -183,9 +194,9 @@ class IconSwapper {
         let promise = new Promise((resolve, reject) => {
             dependenciesLoaded.then(() => {
                 let titleOfChange = this.getChangeTitle();
-                // console.log('loading state');
+                this.log.info('loading state');
                 chrome.storage.local.get(titleOfChange, (states) => {
-                    // console.log('state loaded', states);
+                    this.log.info('state loaded', states);
                     if (states[titleOfChange] !== undefined) {
                         this.iconState = states[titleOfChange];
                     }
@@ -213,7 +224,7 @@ class IconSwapper {
         $(this.iconGenerator.iconTemplate).appendTo($iconContainer);
         let $extIcon = $iconContainer.find(this.extIcon);
         $extIcon.click((evt) => {
-            // console.log('clicked icon');        
+            this.log.info('clicked icon');        
             this.iconDropdown.$dropdown.css($extIcon.offset());
             this.iconDropdown.$dropdown.show();
             this.$lastClickedItem = $listItem;
@@ -224,7 +235,7 @@ class IconSwapper {
     addIcons() {        
         this.loaded.then(() => {
             let $listItems = this.itemList.$items;
-            // console.log(`Found ${$listItems.length} items to play with`);
+            this.log.info(`Found ${$listItems.length} items to play with`);
             $listItems.each((index, listItem) => {
                 if ($(listItem).find(this.extIcon).length > 0) {
                     return;
