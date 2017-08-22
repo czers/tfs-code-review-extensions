@@ -39,10 +39,10 @@ class IconDropdown {
 
     constructor() {
         this.dropdown = '#tfs-cr-ext-icon-dropdown';
-        this.loaded = this.loadDropdownTemplate()
-            .then((template) => this.setupDropdown(template));
         this.clickCallback = () => {};       
         this.log = new Logger();
+        this.loaded = this.loadDropdownTemplate()
+            .then((template) => this.setupDropdown(template));
     }
 
     setupDropdown(template) {
@@ -96,10 +96,10 @@ class ItemList {
         this.folderItem = '.folder-item';
         this.anyListItem = [this.fileItem, this.folderItem].join(',');
         this.itemListDetectionInterval = 250;
-        this.loaded = this.waitForFileListToBeReady()
-            .then(() => this.setupObserve());
         this.observerCallback = () => {};
         this.log = new Logger();
+        this.loaded = this.waitForFileListToBeReady()
+            .then(() => this.setupObserve());
     }
 
     get $list() {
@@ -164,19 +164,21 @@ class IconSwapper {
     constructor() {
         this.iconContainer = '.grid-icon';
         this.extIcon = '.tfs-cr-ext-icon';
-        this.changeTitleContainer = '.vc-change-title-link-container';
+        this.changeTitleContainer = '.vc-change-title-link-container, .pullrequest-id-text:visible, .commit-id-short'; // TFS2015, TFS2017 - PR, TFS2017 - commit
         this.itemList = new ItemList();
         this.iconGenerator = new IconGenerator();
         this.iconDropdown = new IconDropdown();
         this.iconDropdown.click((iconType) => this.swapLastClickedIcon(iconType));
         this.$lastClickedItem = undefined;
         this.iconState = {};
-        this.loaded = this.loadIconState();
         this.log = new Logger();
+        this.loaded = this.loadIconState();
     }
 
     getChangeTitle() {
-        return $(this.changeTitleContainer).text().trim();
+        var name = $(this.changeTitleContainer).text().trim();
+        this.log.info(`found change name: ${name}`);
+        return name;
     }
 
     saveIconState() {
@@ -235,7 +237,7 @@ class IconSwapper {
     addIcons() {        
         this.loaded.then(() => {
             let $listItems = this.itemList.$items;
-            this.log.info(`Found ${$listItems.length} items to play with`);
+            this.log.info(`found ${$listItems.length} items to play with`);
             $listItems.each((index, listItem) => {
                 if ($(listItem).find(this.extIcon).length > 0) {
                     return;
