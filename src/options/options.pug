@@ -6,6 +6,8 @@ head
     link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet', type='text/css')
 body
     .page-container
+        .options-header.center-align
+            | TFS File Review Status - Options
         ul.collapsible(data-collapsible='expandable')
             li.active
                 .collapsible-header.active
@@ -26,26 +28,6 @@ body
                 .collapsible-body
                     .center-align(action="#")
                         img.joke(src='http://www.cabird.com/wp/wp-content/uploads/2015/03/friendly-code-review.png')
-            li
-                .collapsible-header
-                    i.mdi.mdi-flask
-                    | Experimental features
-                    .switch.section-switch
-                        label
-                            input(disabled='', type='checkbox')
-                            span.lever
-
-                .collapsible-body
-                    form(action="#")
-                        p
-                            input#tracking-progress(type='checkbox', disabled='disabled')
-                            label(for='tracking-progress') Tracking review progress (coming soon)
-                        p
-                            input#files-visibility(type='checkbox', disabled='disabled')
-                            label(for='files-visibility') Files visibility (coming soon)
-                        p
-                            input#file-name-colors(type='checkbox', disabled='disabled')
-                            label(for='file-name-colors') File name colors (coming soon)
 
     script(src='libs.js')
     script(src='scripts.js')
