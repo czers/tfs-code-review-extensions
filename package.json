@@ -27,7 +27,10 @@
   },
   "scripts": {
     "test": "gulp test",
+    "default": "gulp",
+    "clean": "gulp clean",
     "build": "gulp build",
+    "pack": "gulp pack",
     "watch": "gulp watch",
     "keygen": "crx keygen"
   },
