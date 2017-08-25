@@ -1,6 +1,6 @@
 {
-	"name": "TFS Code Review Extensions",
-	"description": "Improve your productivity with the set of extensions for the TFS Pull Requests interface.",
+	"name": "TFS File Review Status",
+	"description": "Track your pull request/commit review progress on a granular, per-file basis.",
 	"version": "0.0.4",
 	"manifest_version": 2,
 	"browser_action": {
@@ -12,7 +12,7 @@
 			"128": "images/icon-128.png",
 			"256": "images/icon-256.png"
 		},
-		"default_title": "TFS Code Review Extensions",
+		"default_title": "TFS File Review Status",
 		"default_popup": "popup/popup.html"
 	},
 	"icons": {

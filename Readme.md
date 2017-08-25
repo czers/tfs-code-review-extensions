@@ -1,6 +1,6 @@
-# TFS Code Review Extensions
+# TFS File Review Status
 
-Improve your productivity with the set of extensions for the TFS Pull Requests interface.
+Track your pull request/commit review progress on a granular, per-file basis.
 
 ---
 
