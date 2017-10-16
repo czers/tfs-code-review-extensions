@@ -104,9 +104,9 @@ gulp.task 'clean', ->
 #
 
 gulp.task 'pack:zip', () ->
-    {'7z' : _7z} = require('7zip')
-    {spawn} = require('child_process')
-    spawn(_7z, ['a', 'bin\\extension.zip', '.\\dist\\*'])
+    gulp.src 'dist/**/*'
+        .pipe $.zip 'extension.zip'
+        .pipe gulp.dest 'bin'
 
 gulp.task 'pack:crx', () ->
     fs = require 'fs'
@@ -126,7 +126,7 @@ gulp.task 'pack:crx', () ->
 
 gulp.task 'pack', parallel [
     'pack:zip'
-    'pack:crx'
+    # 'pack:crx' # disabled, only submitting ZIPs to addon stores
 ]
 
 gulp.task 'default', series [

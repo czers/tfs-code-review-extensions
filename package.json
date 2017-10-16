@@ -9,7 +9,6 @@
     "mdi": "^1.7.22"
   },
   "devDependencies": {
-    "7zip": "0.0.6",
     "@types/chrome": "0.0.48",
     "@types/jquery": "^3.2.11",
     "@types/materialize-css": "^0.100.0",
@@ -22,6 +21,7 @@
     "gulp-postcss": "^6.2.0",
     "gulp-pug": "^3.1.0",
     "gulp-typescript": "^3.2.1",
+    "gulp-zip": "^4.0.0",
     "precss": "^1.4.0",
     "typescript": "^2.4.2"
   },
